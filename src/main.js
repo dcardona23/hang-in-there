@@ -7,6 +7,11 @@ let posterTitle = document.querySelector('h1')
 let posterQuote = document.querySelector('#random-quote')
 let randomPosterButton = document.querySelector('#random-poster-button')
 
+let makeYourOwnPosterSection = document.querySelector('#poster-form')
+let makeYourOwnPosterButton = document.querySelector('#show-form')
+let mainPosterSection = document.querySelector('#main-poster')
+let takeMeBackButton = document.querySelector('#take-me-back')
+
 var images = [
   "./assets/bees.jpg",
   "./assets/bridge.jpg",
@@ -131,6 +136,9 @@ var currentPoster;
 
 document.addEventListener('DOMContentLoaded', generateRandomPoster)
 randomPosterButton.addEventListener('click', showAnotherRandomPoster)
+makeYourOwnPosterButton.addEventListener('click', hideMainPosterSection)
+makeYourOwnPosterButton.addEventListener('click', showMakeYourOwnPosterForm)
+takeMeBackButton.addEventListener('click', returnToMainPage)
 
 // FUNCTIONS AND EVENT HANDLERS
 
@@ -175,26 +183,6 @@ function showAnotherRandomPoster() {
   generateRandomPoster()
 }
 
-//when the user clicks on "Make Your Own Poster", they should be shown the form view 
-//the poster view should be hidden, along with all of the buttons
-//a new button should display that says "Nevermind, take me back"
-//need to remove the hidden class from the section
-//will need access to the poster-form section
-//will also need access to the "Make Your Own Poster" button
-
-var makeYourOwnPosterSection = document.querySelector('#poster-form')
-var makeYourOwnPosterButton = document.querySelector('#show-form')
-var mainPosterSection = document.querySelector('#main-poster')
-
-
-//will need an event listener that applies the hidden style to the main-poster section
-//will also need access to the main poster section
-//event listener will need to hide the main poster section and remove the hidden style from the poster-form section upon the user's click of the Make Your Own Poster button
-
-makeYourOwnPosterButton.addEventListener('click', hideMainPosterSection)
-makeYourOwnPosterButton.addEventListener('click', showMakeYourOwnPosterForm)
-
-
 function hideMainPosterSection() {
   mainPosterSection.classList.add('hidden')
 }
@@ -203,3 +191,7 @@ function showMakeYourOwnPosterForm() {
   makeYourOwnPosterSection.classList.remove('hidden')
 }
 
+function returnToMainPage() {
+  makeYourOwnPosterSection.classList.add('hidden')
+  mainPosterSection.classList.remove('hidden')
+}
