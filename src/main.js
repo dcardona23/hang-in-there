@@ -174,3 +174,32 @@ function generateRandomPoster() {
 function showAnotherRandomPoster() {
   generateRandomPoster()
 }
+
+//when the user clicks on "Make Your Own Poster", they should be shown the form view 
+//the poster view should be hidden, along with all of the buttons
+//a new button should display that says "Nevermind, take me back"
+//need to remove the hidden class from the section
+//will need access to the poster-form section
+//will also need access to the "Make Your Own Poster" button
+
+var makeYourOwnPosterSection = document.querySelector('#poster-form')
+var makeYourOwnPosterButton = document.querySelector('#show-form')
+var mainPosterSection = document.querySelector('#main-poster')
+
+
+//will need an event listener that applies the hidden style to the main-poster section
+//will also need access to the main poster section
+//event listener will need to hide the main poster section and remove the hidden style from the poster-form section upon the user's click of the Make Your Own Poster button
+
+makeYourOwnPosterButton.addEventListener('click', hideMainPosterSection)
+makeYourOwnPosterButton.addEventListener('click', showMakeYourOwnPosterForm)
+
+
+function hideMainPosterSection() {
+  mainPosterSection.classList.add('hidden')
+}
+
+function showMakeYourOwnPosterForm() {
+  makeYourOwnPosterSection.classList.remove('hidden')
+}
+
