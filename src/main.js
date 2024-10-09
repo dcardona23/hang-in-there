@@ -1,7 +1,12 @@
-// query selector variables go here 👇
+// QUERY SELECTORS
 
-// we've provided you with some data to work with 👇
-// tip: you can tuck this data out of view with the dropdown found near the line number where the variable is declared 
+//need to use query selector to identify where in the HTML file we need to feed in the randomPoster object
+//randomPoster.imageURL will need to replace src in the image element within the poster article
+let posterImage = document.querySelector('#random-poster-image')
+let posterTitle = document.querySelector('h1')
+let posterQuote = document.querySelector('#random-quote')
+let randomPosterButton = document.querySelector('#random-poster-button')
+
 var images = [
   "./assets/bees.jpg",
   "./assets/bridge.jpg",
@@ -101,33 +106,39 @@ var quotes = [
 ];
 var savedPosters = [];
 var currentPoster;
+var randomImageIndex;
+var imageSRC;
+var randomTitleIndex;
+var randomTitle;
+var randomQuoteIndex;
+var randomQuote;
+var randomPoster;
 
-// event listeners go here 👇
+// EVENT LISTENERS
 
-window.addEventListener('load', () => {
-  randomImage = getRandomIndex(images)
+document.addEventListener('DOMContentLoaded', () => {
+  generateRandomPoster()
 })
 
-window.addEventListener('load', () => {
-  randomTitle = getRandomIndex(titles)
-})
+randomPosterButton.addEventListener('click', showAnotherRandomPoster)
 
-window.addEventListener('load', () => {
-  randomQuote = getRandomIndex(quotes)
-})
+// FUNCTIONS AND EVENT HANDLERS
 
-// functions and event handlers go here 👇
-// (we've provided two to get you started)!
-
-//this function identifies a random index position from the array that is entered as an argument
-//can use this index position to assign the image, title, and quote
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
 
-/*need to take each of the random index numbers and identify the url, title, or quote at that index to use in the createPoster function. createPoster function takes the url, title, and quote as arguments. 
-Create a funtion that takes the index number in as an argument and returns the element at that value
-*/
+function identifyRandomImage(randomImageIndex) {
+  return images[randomImageIndex]
+}
+
+function identifyRandomTitle(randomTitleIndex) {
+  return titles[randomTitleIndex]
+}
+
+function identifyRandomQuote(randomQuoteIndex) {
+  return quotes[randomQuoteIndex]
+}
 
 function createPoster(imageURL, title, quote) {
   return {
@@ -137,5 +148,34 @@ function createPoster(imageURL, title, quote) {
     quote: quote}
 }
 
-console.log(createPoster("./assets/bees.jpg", "believe", "Don’t downgrade your dream just to fit your reality, upgrade your conviction to match your destiny."))
+function loadRandomImage() {
+  posterImage.src = randomPoster.imageURL
+}
 
+function loadRandomTitle() {
+  posterTitle.innerText = randomPoster.title
+}
+
+function loadRandomQuote() {
+  posterQuote.innerText = randomPoster.quote
+}
+
+function generateRandomPoster() {
+  let randomImageIndex = getRandomIndex(images)
+  let randomTitleIndex = getRandomIndex(titles)
+  let randomQuoteIndex = getRandomIndex(quotes)
+
+  randomPoster = createPoster(
+    identifyRandomImage(randomImageIndex),
+    identifyRandomTitle(randomTitleIndex),
+    identifyRandomQuote(randomQuoteIndex)
+  )
+
+  loadRandomImage()
+  loadRandomTitle()
+  loadRandomQuote()
+}
+
+function showAnotherRandomPoster() {
+  generateRandomPoster()
+}
