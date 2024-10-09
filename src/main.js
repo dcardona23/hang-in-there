@@ -27,6 +27,26 @@ var images = [
   "./assets/tiger.jpg",
   "./assets/turtle.jpg"
 ];
+var alts = [
+  "bees",
+  "bridge", 
+  "butterfly",
+  "cliff",
+  "elephant",
+  "flock",
+  "fox",
+  "frog",
+  "horse",
+  "lion",
+  "mountain",
+  "pier",
+  "puffins",
+  "pug",
+  "runner",
+  "squirrel",
+  "tiger",
+  "turtle"
+]
 var titles = [
   "determination",
   "success",
@@ -106,20 +126,10 @@ var quotes = [
 ];
 var savedPosters = [];
 var currentPoster;
-var randomImageIndex;
-var imageSRC;
-var randomTitleIndex;
-var randomTitle;
-var randomQuoteIndex;
-var randomQuote;
-var randomPoster;
 
 // EVENT LISTENERS
 
-document.addEventListener('DOMContentLoaded', () => {
-  generateRandomPoster()
-})
-
+document.addEventListener('DOMContentLoaded', generateRandomPoster)
 randomPosterButton.addEventListener('click', showAnotherRandomPoster)
 
 // FUNCTIONS AND EVENT HANDLERS
@@ -128,36 +138,20 @@ function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
 
-function identifyRandomImage(randomImageIndex) {
-  return images[randomImageIndex]
-}
-
-function identifyRandomTitle(randomTitleIndex) {
-  return titles[randomTitleIndex]
-}
-
-function identifyRandomQuote(randomQuoteIndex) {
-  return quotes[randomQuoteIndex]
-}
-
-function createPoster(imageURL, title, quote) {
+function createPoster(imageObject, title, quote) {
   return {
     id: Date.now(), 
-    imageURL: imageURL, 
+    imageURL: imageObject.imageURL, 
+    alt: imageObject.alt,
     title: title, 
     quote: quote}
 }
 
-function loadRandomImage() {
-  posterImage.src = randomPoster.imageURL
-}
-
-function loadRandomTitle() {
-  posterTitle.innerText = randomPoster.title
-}
-
-function loadRandomQuote() {
-  posterQuote.innerText = randomPoster.quote
+function loadPoster(poster) {
+  posterImage.src = poster.imageURL;
+  posterImage.alt = poster.alt;
+  posterTitle.innerText = poster.title;
+  posterQuote.innerText = poster.quote;
 }
 
 function generateRandomPoster() {
@@ -165,15 +159,16 @@ function generateRandomPoster() {
   let randomTitleIndex = getRandomIndex(titles)
   let randomQuoteIndex = getRandomIndex(quotes)
 
-  randomPoster = createPoster(
-    identifyRandomImage(randomImageIndex),
-    identifyRandomTitle(randomTitleIndex),
-    identifyRandomQuote(randomQuoteIndex)
-  )
+  let imageObject = {
+    imageURL: images[randomImageIndex],
+    alt: alts[randomImageIndex]
+  }
+  let title = titles[randomTitleIndex]
+  let quote = quotes[randomQuoteIndex]
+  
+  randomPoster = createPoster(imageObject, title, quote);
 
-  loadRandomImage()
-  loadRandomTitle()
-  loadRandomQuote()
+  loadPoster(randomPoster)
 }
 
 function showAnotherRandomPoster() {
