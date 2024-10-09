@@ -1,5 +1,11 @@
 // query selector variables go here 👇
 
+//need to use query selector to identify where in the HTML file we need to feed in the randomPoster object
+//randomPoster.imageURL will need to replace src in the image element within the poster article
+let posterImage = document.querySelector('#random-poster-image')
+let posterTitle = document.querySelector('h1')
+let posterQuote = document.querySelector('#random-quote')
+
 // we've provided you with some data to work with 👇
 // tip: you can tuck this data out of view with the dropdown found near the line number where the variable is declared 
 var images = [
@@ -107,6 +113,7 @@ var randomTitleIndex;
 var randomTitle;
 var randomQuoteIndex;
 var randomQuote;
+var randomPoster;
 
 // event listeners go here 👇
 
@@ -124,6 +131,17 @@ document.addEventListener('DOMContentLoaded', () => {
   randomQuoteIndex = getRandomIndex(quotes)
   randomQuote = identifyRandomQuote(randomQuoteIndex)
 })
+
+document.addEventListener('DOMContentLoaded', () => {
+  randomPoster = createPoster(imageSRC, randomTitle, randomQuote)
+})
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadRandomImage()
+  loadRandomTitle()
+  loadRandomQuote()
+})
+
 
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
@@ -159,5 +177,14 @@ function createPoster(imageURL, title, quote) {
     quote: quote}
 }
 
-console.log(createPoster("./assets/bees.jpg", "believe", "Don’t downgrade your dream just to fit your reality, upgrade your conviction to match your destiny."))
+function loadRandomImage() {
+  posterImage.src = randomPoster.imageURL
+}
 
+function loadRandomTitle() {
+  posterTitle.innerText = randomPoster.title
+}
+
+function loadRandomQuote() {
+  posterQuote.innerText = randomPoster.quote
+}
