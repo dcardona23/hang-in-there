@@ -105,15 +105,20 @@ var currentPoster;
 // event listeners go here 👇
 
 window.addEventListener('load', () => {
-  randomImage = getRandomIndex(images)
+  randomImageIndex = getRandomIndex(images)
+  imageSRC = identifyRandomImage(randomImageIndex)
 })
 
 window.addEventListener('load', () => {
-  randomTitle = getRandomIndex(titles)
+  randomImage = identifyRandomImage(randomImageIndex)
 })
 
 window.addEventListener('load', () => {
-  randomQuote = getRandomIndex(quotes)
+  randomTitleIndex = getRandomIndex(titles)
+})
+
+window.addEventListener('load', () => {
+  randomQuoteIndex = getRandomIndex(quotes)
 })
 
 // functions and event handlers go here 👇
@@ -124,6 +129,13 @@ window.addEventListener('load', () => {
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
+
+//this function will need to take the random index position and match it to the image at that index position in the images array
+function identifyRandomImage(randomImageIndex) {
+  return images[randomImageIndex]
+}
+
+
 
 /*need to take each of the random index numbers and identify the url, title, or quote at that index to use in the createPoster function. createPoster function takes the url, title, and quote as arguments. 
 Create a funtion that takes the index number in as an argument and returns the element at that value
