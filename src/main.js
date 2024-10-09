@@ -1,16 +1,26 @@
-// QUERY SELECTORS
+// **QUERY SELECTORS**
 
-//need to use query selector to identify where in the HTML file we need to feed in the randomPoster object
-//randomPoster.imageURL will need to replace src in the image element within the poster article
+//POSTER ELEMENTS
+
 let posterImage = document.querySelector('#random-poster-image')
 let posterTitle = document.querySelector('h1')
 let posterQuote = document.querySelector('#random-quote')
 let randomPosterButton = document.querySelector('#random-poster-button')
 
+//HTML SECTIONS
+
 let makeYourOwnPosterSection = document.querySelector('#poster-form')
-let makeYourOwnPosterButton = document.querySelector('#show-form')
 let mainPosterSection = document.querySelector('#main-poster')
+let savedPostersSection = document.querySelector('#saved-posters')
+
+//HTML BUTTONS
+
+let makeYourOwnPosterButton = document.querySelector('#show-form')
 let takeMeBackButton = document.querySelector('#take-me-back')
+let savedPostersButton = document.querySelector('#show-saved')
+let backToMain = document.querySelector('#back-to-main')
+
+//ASSETS
 
 var images = [
   "./assets/bees.jpg",
@@ -132,16 +142,19 @@ var quotes = [
 var savedPosters = [];
 var currentPoster;
 
-// EVENT LISTENERS
+// **EVENT LISTENERS**
 
 document.addEventListener('DOMContentLoaded', generateRandomPoster)
 randomPosterButton.addEventListener('click', showAnotherRandomPoster)
 makeYourOwnPosterButton.addEventListener('click', hideMainPosterSection)
 makeYourOwnPosterButton.addEventListener('click', showMakeYourOwnPosterForm)
 takeMeBackButton.addEventListener('click', returnToMainPage)
+savedPostersButton.addEventListener('click', showSavedPostersSection)
+backToMain.addEventListener('click', returnToMainPage)
 
-// FUNCTIONS AND EVENT HANDLERS
+// **FUNCTIONS AND EVENT HANDLERS**
 
+//POSTER CREATION AND LOADING FUNCTIONS
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
@@ -183,6 +196,7 @@ function showAnotherRandomPoster() {
   generateRandomPoster()
 }
 
+//FUNCTIONS TO ADD/REMOVE HIDDEN STYLE
 function hideMainPosterSection() {
   mainPosterSection.classList.add('hidden')
 }
@@ -194,4 +208,9 @@ function showMakeYourOwnPosterForm() {
 function returnToMainPage() {
   makeYourOwnPosterSection.classList.add('hidden')
   mainPosterSection.classList.remove('hidden')
+}
+
+function showSavedPostersSection() {
+  savedPostersSection.classList.remove('hidden')
+  mainPosterSection.classList.add('hidden')
 }
