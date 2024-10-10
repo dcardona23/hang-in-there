@@ -2,23 +2,23 @@
 
 //POSTER ELEMENTS
 
-let posterImage = document.querySelector('#random-poster-image')
-let posterTitle = document.querySelector('h1')
-let posterQuote = document.querySelector('#random-quote')
-let randomPosterButton = document.querySelector('#random-poster-button')
+var posterImage = document.querySelector('#random-poster-image')
+var posterTitle = document.querySelector('h1')
+var posterQuote = document.querySelector('#random-quote')
+var randomPosterButton = document.querySelector('#random-poster-button')
 
 //HTML SECTIONS
 
-let makeYourOwnPosterSection = document.querySelector('#poster-form')
-let mainPosterSection = document.querySelector('#main-poster')
-let savedPostersSection = document.querySelector('#saved-posters')
+var makeYourOwnPosterSection = document.querySelector('#poster-form')
+var mainPosterSection = document.querySelector('#main-poster')
+var savedPostersSection = document.querySelector('#saved-posters')
 
 //HTML BUTTONS
 
-let makeYourOwnPosterButton = document.querySelector('#show-form')
-let takeMeBackButton = document.querySelector('#take-me-back')
-let savedPostersButton = document.querySelector('#show-saved')
-let backToMain = document.querySelector('#back-to-main')
+var makeYourOwnPosterButton = document.querySelector('#show-form')
+var takeMeBackButton = document.querySelector('#take-me-back')
+var savedPostersButton = document.querySelector('#show-saved')
+var backToMain = document.querySelector('#back-to-main')
 var showUserPosterButton = document.querySelector('#show-user-poster-button')
 
 //INPUTS
@@ -183,16 +183,16 @@ function loadPoster(poster) {
 }
 
 function generateRandomPoster() {
-  let randomImageIndex = getRandomIndex(images)
-  let randomTitleIndex = getRandomIndex(titles)
-  let randomQuoteIndex = getRandomIndex(quotes)
+  var randomImageIndex = getRandomIndex(images)
+  var randomTitleIndex = getRandomIndex(titles)
+  var randomQuoteIndex = getRandomIndex(quotes)
 
-  let imageObject = {
+  var imageObject = {
     imageURL: images[randomImageIndex],
     alt: alts[randomImageIndex]
   }
-  let title = titles[randomTitleIndex]
-  let quote = quotes[randomQuoteIndex]
+  var title = titles[randomTitleIndex]
+  var quote = quotes[randomQuoteIndex]
   
   currentPoster = createPoster(imageObject, title, quote);
   
@@ -231,10 +231,10 @@ function createDisplayAndStoreNewPoster(event) {
 }
 
 function storeUserInputInArrays() {
-  let userUrl = urlInput.value
-  let userAlt = 'User uploaded image'
-  let userTitle = titleInput.value
-  let userQuote = quoteInput.value
+  var userUrl = urlInput.value
+  var userAlt = 'User uploaded image'
+  var userTitle = titleInput.value
+  var userQuote = quoteInput.value
 
   images.push(userUrl)
   alts.push(userAlt)
@@ -254,4 +254,33 @@ function resetForm(event) {
   urlInput.value = ''
   titleInput.value = ''
   quoteInput.value = ''
+}
+
+//when user clicks on "Save This Poster", I need to add the currentPoster to the savedPosters array
+//will need access to the Save This Poster button, and will need to use the currentPoster and savedPosters variables 
+
+var saveThisPosterButton = document.querySelector('#save-poster-button') //button to save poster
+var savedPostersGrid = document.querySelector('.saved-posters-grid') //this is where the saved posters should be added
+
+
+
+saveThisPosterButton.addEventListener('click', savePoster)
+//after clicking the savethis poster button, currentPoster should be pushed to the end of the saved posters array
+
+function savePoster() {
+  addCurrentPosterToSavedPostersArray()
+  showSavedPostersSection()
+  loadCurrentPosterToSavedPostersPage()
+}
+
+function addCurrentPosterToSavedPostersArray() {
+  savedPosters.push(currentPoster)
+}
+
+function loadCurrentPosterToSavedPostersPage() {
+  savedPostersGrid.innerHTML += `
+  <img src="${currentPoster.imageURL}" alt="${currentPoster.alt}" class="poster saved-poster-image main-poster poster-img saved-poster-item">
+  <h1 class="saved-poster-title poster-title saved-poster-item">${currentPoster.title}</h1>
+  <h3 class="saved-poster-quote poster-quote saved-poster-item">${currentPoster.quote}</h3>
+  `
 }
