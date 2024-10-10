@@ -146,7 +146,6 @@ var currentPoster;
 
 document.addEventListener('DOMContentLoaded', generateRandomPoster)
 randomPosterButton.addEventListener('click', showAnotherRandomPoster)
-makeYourOwnPosterButton.addEventListener('click', hideMainPosterSection)
 makeYourOwnPosterButton.addEventListener('click', showMakeYourOwnPosterForm)
 takeMeBackButton.addEventListener('click', returnToMainPage)
 savedPostersButton.addEventListener('click', showSavedPostersSection)
@@ -197,11 +196,8 @@ function showAnotherRandomPoster() {
 }
 
 //FUNCTIONS TO ADD/REMOVE HIDDEN STYLE
-function hideMainPosterSection() {
-  mainPosterSection.classList.add('hidden')
-}
-
 function showMakeYourOwnPosterForm() {
+  mainPosterSection.classList.add('hidden')
   makeYourOwnPosterSection.classList.remove('hidden')
 }
 
@@ -214,4 +210,52 @@ function returnToMainPage() {
 function showSavedPostersSection() {
   savedPostersSection.classList.remove('hidden')
   mainPosterSection.classList.add('hidden')
+}
+
+//needs to take the user input for Image url, motivational title, and motivational quote
+
+//will need access to: input boxes, show my poster button, posterImage, posterTitle, posterQuote 
+//posterImage.src and .alt will be tied to new image
+
+//poster-image-url is the id of the image url input, poster-title is the id of the title input, poster-quote is the id of the quote input 
+//these inputs are currently empty strings - can't access their values until the show user poster button is clicked
+var urlInput = document.querySelector('#poster-image-url')
+var titleInput = document.querySelector('#poster-title')
+var quoteInput = document.querySelector('#poster-quote')
+
+var showUserPosterButton = document.querySelector('#show-user-poster-button')
+
+showUserPosterButton.addEventListener('click', saveUserPoster)
+
+//those values become the currentPoster variable (probably an object with key value pairs)
+//each piece of user input needs to be added to the corresponding array - built in push() function
+//once the poster is created, the create form view needs to be hidden and the main poster view shown
+
+function saveUserPoster(event) {
+  event.preventDefault()
+  //assigning variables to the inputs after the user has entered information and clicked the button
+  let userUrl = urlInput.value
+  let userAlt = 'User uploaded image'
+  let userTitle = titleInput.value
+  let userQuote = quoteInput.value
+
+  //should add the user inputs to the end of each of the arrays
+  images.push(userUrl)
+  alts.push('user uploaded image')
+  titles.push(userTitle)
+  quotes.push(userQuote)
+
+  createUserPoster(userUrl, userTitle, userQuote);
+
+  returnToMainPage();
+}
+
+function createUserPoster(imageUrl, title, quote) {
+  currentPoster = createPoster({
+    imageURL: imageUrl,
+    alt: 'User uploaded image' },
+    title,
+    quote)
+
+    loadPoster(currentPoster)
 }
