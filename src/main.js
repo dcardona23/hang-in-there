@@ -194,9 +194,9 @@ function generateRandomPoster() {
   let title = titles[randomTitleIndex]
   let quote = quotes[randomQuoteIndex]
   
-  randomPoster = createPoster(imageObject, title, quote);
-
-  loadPoster(randomPoster)
+  currentPoster = createPoster(imageObject, title, quote);
+  
+  loadPoster(currentPoster)
 }
 
 function showAnotherRandomPoster() {
@@ -220,9 +220,9 @@ function showSavedPostersSection() {
   mainPosterSection.classList.add('hidden')
 }
 
+//FUNCTIONS TO CREATE NEW POSTERS
 function createDisplayAndStoreNewPoster(event) {
   event.preventDefault()
-  //assigning variables to the inputs after the user has entered information and clicked the button
   storeUserInputInArrays()
   createUserPoster(urlInput.value, titleInput.value, quoteInput.value)
   returnToMainPage()
