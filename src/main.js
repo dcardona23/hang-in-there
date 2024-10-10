@@ -207,6 +207,7 @@ function showMakeYourOwnPosterForm() {
 
 function returnToMainPage() {
   makeYourOwnPosterSection.classList.add('hidden')
+  savedPostersSection.classList.add('hidden')
   mainPosterSection.classList.remove('hidden')
 }
 
