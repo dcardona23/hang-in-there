@@ -19,6 +19,13 @@ let makeYourOwnPosterButton = document.querySelector('#show-form')
 let takeMeBackButton = document.querySelector('#take-me-back')
 let savedPostersButton = document.querySelector('#show-saved')
 let backToMain = document.querySelector('#back-to-main')
+var showUserPosterButton = document.querySelector('#show-user-poster-button')
+
+//INPUTS
+
+var urlInput = document.querySelector('#poster-image-url')
+var titleInput = document.querySelector('#poster-title')
+var quoteInput = document.querySelector('#poster-quote')
 
 //ASSETS
 
@@ -150,6 +157,7 @@ makeYourOwnPosterButton.addEventListener('click', showMakeYourOwnPosterForm)
 takeMeBackButton.addEventListener('click', returnToMainPage)
 savedPostersButton.addEventListener('click', showSavedPostersSection)
 backToMain.addEventListener('click', returnToMainPage)
+showUserPosterButton.addEventListener('click', createDisplayAndStoreNewPoster)
 
 // **FUNCTIONS AND EVENT HANDLERS**
 
@@ -186,9 +194,9 @@ function generateRandomPoster() {
   let title = titles[randomTitleIndex]
   let quote = quotes[randomQuoteIndex]
   
-  randomPoster = createPoster(imageObject, title, quote);
-
-  loadPoster(randomPoster)
+  currentPoster = createPoster(imageObject, title, quote);
+  
+  loadPoster(currentPoster)
 }
 
 function showAnotherRandomPoster() {
@@ -212,50 +220,38 @@ function showSavedPostersSection() {
   mainPosterSection.classList.add('hidden')
 }
 
-//needs to take the user input for Image url, motivational title, and motivational quote
-
-//will need access to: input boxes, show my poster button, posterImage, posterTitle, posterQuote 
-//posterImage.src and .alt will be tied to new image
-
-//poster-image-url is the id of the image url input, poster-title is the id of the title input, poster-quote is the id of the quote input 
-//these inputs are currently empty strings - can't access their values until the show user poster button is clicked
-var urlInput = document.querySelector('#poster-image-url')
-var titleInput = document.querySelector('#poster-title')
-var quoteInput = document.querySelector('#poster-quote')
-
-var showUserPosterButton = document.querySelector('#show-user-poster-button')
-
-showUserPosterButton.addEventListener('click', saveUserPoster)
-
-//those values become the currentPoster variable (probably an object with key value pairs)
-//each piece of user input needs to be added to the corresponding array - built in push() function
-//once the poster is created, the create form view needs to be hidden and the main poster view shown
-
-function saveUserPoster(event) {
+//FUNCTIONS TO CREATE NEW POSTERS
+function createDisplayAndStoreNewPoster(event) {
   event.preventDefault()
-  //assigning variables to the inputs after the user has entered information and clicked the button
+  storeUserInputInArrays()
+  createUserPoster(urlInput.value, titleInput.value, quoteInput.value)
+  returnToMainPage()
+  loadPoster(currentPoster)
+  resetForm()
+}
+
+function storeUserInputInArrays() {
   let userUrl = urlInput.value
   let userAlt = 'User uploaded image'
   let userTitle = titleInput.value
   let userQuote = quoteInput.value
 
-  //should add the user inputs to the end of each of the arrays
   images.push(userUrl)
-  alts.push('user uploaded image')
+  alts.push(userAlt)
   titles.push(userTitle)
   quotes.push(userQuote)
-
-  createUserPoster(userUrl, userTitle, userQuote);
-
-  returnToMainPage();
 }
 
-function createUserPoster(imageUrl, title, quote) {
+function createUserPoster(userUrl, userTitle, userQuote) {
   currentPoster = createPoster({
-    imageURL: imageUrl,
+    imageURL: userUrl,
     alt: 'User uploaded image' },
-    title,
-    quote)
+    userTitle,
+    userQuote)
+}
 
-    loadPoster(currentPoster)
+function resetForm(event) {
+  urlInput.value = ''
+  titleInput.value = ''
+  quoteInput.value = ''
 }
