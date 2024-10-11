@@ -264,18 +264,35 @@ function resetForm(event) {
 function savePoster() {
   addCurrentPosterToSavedPostersArray()
   showSavedPostersSection()
-  loadCurrentPosterToSavedPostersPage()
 }
 
 function addCurrentPosterToSavedPostersArray() {
+  if (!savedPosters.some(poster =>
+    poster.imageURL === currentPoster.imageURL &&
+    poster.title === currentPoster.title &&
+    poster.quote === currentPoster.quote)) 
+    {
   savedPosters.push(currentPoster)
+
+  var savedPosterIndex = findSavedPosterIndex(savedPosters)
+
+  loadCurrentPosterToSavedPostersPage(savedPosterIndex)
+    }
 }
 
-function loadCurrentPosterToSavedPostersPage() {
+function findSavedPosterIndex(savedPosters) {
+  return savedPosters.findIndex(poster =>
+    poster.imageURL === currentPoster.imageURL &&
+    poster.title === currentPoster.title &&
+    poster.quote === currentPoster.quote
+  )
+}
+
+function loadCurrentPosterToSavedPostersPage(savedPosterIndex) {
   savedPostersGrid.innerHTML += `
   <div class="mini-poster">
-    <img src="${currentPoster.imageURL}" alt="${currentPoster.alt}" class="mini-poster img">
-    <h2>${currentPoster.title}</h1>
-    <h4>${currentPoster.quote}</h3>
+    <img src="${savedPosters[savedPosterIndex].imageURL}" alt="${savedPosters[savedPosterIndex].alt || ''}" class="mini-poster img">
+    <h2>${savedPosters[savedPosterIndex].title}</h2>
+    <h4>${savedPosters[savedPosterIndex].quote}</h4>
   `
 }
