@@ -18,6 +18,7 @@
     <button class="show-saved" id="show-saved">Show Saved Posters</button>
     <button class="show-random" id="random-poster-button">Show Another Random Poster</button>
     <button class="show-form" id="show-form">Make Your Own Poster</button>
+    <button class="unmotivational" id="unmotivational-button">Unmotivational Posters</button>
   </section>
   <section class="poster-form hidden" id="poster-form">
     <form id="form">
@@ -31,13 +32,20 @@
       <button class="make-poster" id="show-user-poster-button">Show my poster</button>
     </form>
     <div class="divider"></div>
-    <button class="show-main" id="take-me-back">Nevermind, take me back!</button>
+    <button class="show-main" id="back-to-main-create">Nevermind, take me back!</button>
   </section>
   <section class="saved-posters hidden" id="saved-posters">
     <h2>Saved Posters</h2>
     <div class="saved-posters-grid">
     </div>
-    <button class="back-to-main" id="back-to-main">Back to Main</button>
+    <button class="back-to-main" id="back-to-main-saved">Back to Main</button>
+  </section>
+  <section class="hidden unmotivational-posters-section">
+    <h2>Unmotivational Posters</h2>
+    <div class="unmotivational-posters-grid">
+      
+    </div>
+    <button class="back-to-main" id="back-to-main-unmotivational">Back to Main</button>
   </section>
   <script src="./src/main.js"></script>
 </body>
