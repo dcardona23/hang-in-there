@@ -275,6 +275,7 @@ var unmotivationalPosters = [
 ];
 var savedPosters = [];
 var currentPoster;
+var alt
 
 // **EVENT LISTENERS**
 
@@ -296,18 +297,16 @@ function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
 
-function createPoster(imageObject, title, quote) {
+function createPoster(imageURL, title, quote) {
   return {
     id: Date.now(), 
-    imageURL: imageObject.imageURL, 
-    alt: imageObject.alt,
+    imageURL: imageURL,
     title: title, 
     quote: quote}
 }
 
 function loadPoster(poster) {
   posterImage.src = poster.imageURL;
-  posterImage.alt = poster.alt;
   posterTitle.innerText = poster.title;
   posterQuote.innerText = poster.quote;
 }
@@ -317,14 +316,12 @@ function generateRandomPoster() {
   var randomTitleIndex = getRandomIndex(titles)
   var randomQuoteIndex = getRandomIndex(quotes)
 
-  var imageObject = {
-    imageURL: images[randomImageIndex],
-    alt: alts[randomImageIndex]
-  }
   var title = titles[randomTitleIndex]
   var quote = quotes[randomQuoteIndex]
+  var imageURL = images[randomImageIndex]
   
-  currentPoster = createPoster(imageObject, title, quote);
+  currentPoster = createPoster(imageURL, title, quote);
+  currentPoster.alt = alts[randomImageIndex]
   
   loadPoster(currentPoster)
 }
