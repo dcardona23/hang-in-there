@@ -12,6 +12,7 @@ var randomPosterButton = document.querySelector('#random-poster-button')
 var makeYourOwnPosterSection = document.querySelector('#poster-form')
 var mainPosterSection = document.querySelector('#main-poster')
 var savedPostersSection = document.querySelector('#saved-posters')
+var savedPostersGrid = document.querySelector('.saved-posters-grid') 
 
 //HTML BUTTONS
 
@@ -20,6 +21,7 @@ var takeMeBackButton = document.querySelector('#take-me-back')
 var savedPostersButton = document.querySelector('#show-saved')
 var backToMain = document.querySelector('#back-to-main')
 var showUserPosterButton = document.querySelector('#show-user-poster-button')
+var saveThisPosterButton = document.querySelector('#save-poster-button') 
 
 //INPUTS
 
@@ -158,6 +160,7 @@ takeMeBackButton.addEventListener('click', returnToMainPage)
 savedPostersButton.addEventListener('click', showSavedPostersSection)
 backToMain.addEventListener('click', returnToMainPage)
 showUserPosterButton.addEventListener('click', createDisplayAndStoreNewPoster)
+saveThisPosterButton.addEventListener('click', savePoster)
 
 // **FUNCTIONS AND EVENT HANDLERS**
 
@@ -256,16 +259,7 @@ function resetForm(event) {
   quoteInput.value = ''
 }
 
-//when user clicks on "Save This Poster", I need to add the currentPoster to the savedPosters array
-//will need access to the Save This Poster button, and will need to use the currentPoster and savedPosters variables 
-
-var saveThisPosterButton = document.querySelector('#save-poster-button') //button to save poster
-var savedPostersGrid = document.querySelector('.saved-posters-grid') //this is where the saved posters should be added
-
-
-
-saveThisPosterButton.addEventListener('click', savePoster)
-//after clicking the savethis poster button, currentPoster should be pushed to the end of the saved posters array
+//FUNCTIONS TO SAVE POSTERS
 
 function savePoster() {
   addCurrentPosterToSavedPostersArray()
@@ -279,8 +273,9 @@ function addCurrentPosterToSavedPostersArray() {
 
 function loadCurrentPosterToSavedPostersPage() {
   savedPostersGrid.innerHTML += `
-  <img src="${currentPoster.imageURL}" alt="${currentPoster.alt}" class="poster saved-poster-image main-poster poster-img saved-poster-item">
-  <h1 class="saved-poster-title poster-title saved-poster-item">${currentPoster.title}</h1>
-  <h3 class="saved-poster-quote poster-quote saved-poster-item">${currentPoster.quote}</h3>
+  <div class="mini-poster">
+    <img src="${currentPoster.imageURL}" alt="${currentPoster.alt}" class="mini-poster img">
+    <h2>${currentPoster.title}</h1>
+    <h4>${currentPoster.quote}</h3>
   `
 }
