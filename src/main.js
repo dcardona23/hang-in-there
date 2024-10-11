@@ -13,15 +13,18 @@ var makeYourOwnPosterSection = document.querySelector('#poster-form')
 var mainPosterSection = document.querySelector('#main-poster')
 var savedPostersSection = document.querySelector('#saved-posters')
 var savedPostersGrid = document.querySelector('.saved-posters-grid') 
+var unmotivationalPostersSection = document.querySelector('.unmotivational-posters-section')
 
 //HTML BUTTONS
 
 var makeYourOwnPosterButton = document.querySelector('#show-form')
-var takeMeBackButton = document.querySelector('#take-me-back')
+var takeMeBackButton = document.querySelector('#back-to-main-create')
 var savedPostersButton = document.querySelector('#show-saved')
-var backToMain = document.querySelector('#back-to-main')
+var backToMain = document.querySelector('#back-to-main-saved')
 var showUserPosterButton = document.querySelector('#show-user-poster-button')
 var saveThisPosterButton = document.querySelector('#save-poster-button') 
+var unmotivationalButton = document.querySelector('#unmotivational-button')
+var backToMainUnmotivational = document.querySelector('#back-to-main-unmotivational')
 
 //INPUTS
 
@@ -283,6 +286,8 @@ savedPostersButton.addEventListener('click', showSavedPostersSection)
 backToMain.addEventListener('click', returnToMainPage)
 showUserPosterButton.addEventListener('click', createDisplayAndStoreNewPoster)
 saveThisPosterButton.addEventListener('click', savePoster)
+unmotivationalButton.addEventListener('click', showUnmotivationalPostersSection)
+backToMainUnmotivational.addEventListener('click', returnToMainPage)
 
 // **FUNCTIONS AND EVENT HANDLERS**
 
@@ -338,11 +343,17 @@ function returnToMainPage() {
   makeYourOwnPosterSection.classList.add('hidden')
   savedPostersSection.classList.add('hidden')
   mainPosterSection.classList.remove('hidden')
+  unmotivationalPostersSection.classList.add('hidden')
 }
 
 function showSavedPostersSection() {
   savedPostersSection.classList.remove('hidden')
   mainPosterSection.classList.add('hidden')
+}
+
+function showUnmotivationalPostersSection() {
+  mainPosterSection.classList.add('hidden')
+  unmotivationalPostersSection.classList.remove('hidden')
 }
 
 //FUNCTIONS TO CREATE NEW POSTERS
@@ -418,3 +429,6 @@ function loadCurrentPosterToSavedPostersPage(savedPosterIndex) {
     <h4>${savedPosters[savedPosterIndex].quote}</h4>
   `
 }
+
+//UNMOTIVATIONAL POSTERS FUNCTIONS
+
