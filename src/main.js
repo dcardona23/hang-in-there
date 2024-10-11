@@ -289,6 +289,7 @@ showUserPosterButton.addEventListener('click', createDisplayAndStoreNewPoster)
 saveThisPosterButton.addEventListener('click', savePoster)
 unmotivationalButton.addEventListener('click', showUnmotivationalPostersSection)
 backToMainUnmotivational.addEventListener('click', returnToMainPage)
+unmotivationalButton.addEventListener('click', displayUnmotivationalPosters)
 
 // **FUNCTIONS AND EVENT HANDLERS**
 
@@ -429,3 +430,34 @@ function loadCurrentPosterToSavedPostersPage(savedPosterIndex) {
 
 //UNMOTIVATIONAL POSTERS FUNCTIONS
 
+var unmotivationalPostersGrid = document.querySelector('.unmotivational-posters-grid')
+var unmotivationalPostersSection = document.querySelector('.unmotivational-posters-section')
+
+function cleanData(unmotivationalPosters) {
+  var newArray = []
+  var newPoster = {}
+
+  for (var i = 0; i < unmotivationalPosters.length; i++) {
+  var poster = unmotivationalPosters[i]
+  console.log("processing poster:", poster)
+  newPoster = createPoster(poster.img_url, poster.name, poster.description)
+  console.log("Created poster:", newPoster)
+  newArray.push(newPoster)
+    }
+    console.log("Final array:", newArray)
+  return newArray
+}
+
+function displayUnmotivationalPosters() {
+  newArray = cleanData(unmotivationalPosters)
+
+  for (var i = 0 ; i < newArray.length; i++) {
+    var poster = newArray[i]
+    unmotivationalPostersGrid.innerHTML += `
+  <div class="mini-poster">
+    <img src="${poster.imageURL}" alt="${poster.alt || ''}" class="mini-poster img">
+    <h2>${poster.title}</h2>
+    <h4>${poster.quote}</h4>
+  `
+  }
+}
