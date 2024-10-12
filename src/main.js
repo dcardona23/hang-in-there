@@ -57,24 +57,24 @@ var images = [
   "./assets/turtle.jpg"
 ];
 var alts = [
-  "bees",
-  "bridge", 
-  "butterfly",
-  "cliff",
-  "elephant",
-  "flock",
-  "fox",
+  "bees landing on ledge",
+  "bridge across body of water at night", 
+  "red, white, and black butterfly sitting on green leaf",
+  "person standing on rock protruding over cliff",
+  "two elephants walking towards camera",
+  "flock of birds flying across yellow, orange, purple, and blue sky",
+  "young fox walking through green grass",
   "frog",
-  "horse",
-  "lion",
-  "mountain",
-  "pier",
-  "puffins",
-  "pug",
-  "runner",
-  "squirrel",
-  "tiger",
-  "turtle"
+  "brightly colored tree frog on a green leaf",
+  "lion roaring while laying in field of grass",
+  "view of person's back while looking at mountains",
+  "steps down to pier surrounded by purple flowers",
+  "two puffins",
+  "pug wrapped in a blanket",
+  "person running up mountain road",
+  "squirrel looking down into camera from tree trunk",
+  "tiger lounging on a rock",
+  "sea turtle swimming"
 ]
 var titles = [
   "determination",
@@ -275,6 +275,9 @@ var unmotivationalPosters = [
     img_url: "./assets/doubt.jpg",
   }
 ];
+var unmotivationalAlts = [ 
+  "man standing on road in forest", "two dark polaroids", "rain drops on glass", "looking up at airplane from bottom of dark building", "escape key on keyboard", "hopelessness spelled out with scrabble pieces", "bottom of well", "seashell", "looking up from bottom of well", "man screaming  in crumbling room", "fear", "shadow figure", "electrical tower in fog", "doubt sticker on metal pipe" 
+]
 var savedPosters = [];
 var currentPoster;
 var alt
@@ -311,6 +314,7 @@ function createPoster(imageURL, title, quote) {
 
 function loadPoster(poster) {
   posterImage.src = poster.imageURL;
+  posterImage.alt = currentPoster.alt;
   posterTitle.innerText = poster.title;
   posterQuote.innerText = poster.quote;
 }
@@ -432,8 +436,10 @@ function cleanData(unmotivationalPosters) {
 
   for (var i = 0; i < unmotivationalPosters.length; i++) {
   var poster = unmotivationalPosters[i]
+  var posterAlt = unmotivationalAlts[i]
 
   newPoster = createPoster(poster.img_url, poster.name, poster.description)
+  newPoster.alt = posterAlt 
   newArray.push(newPoster)
     }
   return newArray
@@ -446,7 +452,7 @@ function displayUnmotivationalPosters() {
     var poster = newArray[i]
     unmotivationalPostersFlexbox.innerHTML += `
   <div class="mini-poster unmotivational-poster">
-    <img src="${poster.imageURL}" alt="${poster.alt || ''}" class="img">
+    <img src="${poster.imageURL}" alt="${poster.alt}" class="img">
     <h2 class=>${poster.title}</h2>
     <h4 class=>${poster.quote}</h4>
   </div>
