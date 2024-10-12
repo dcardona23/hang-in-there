@@ -14,7 +14,7 @@ var mainPosterSection = document.querySelector('#main-poster')
 var savedPostersSection = document.querySelector('#saved-posters')
 var savedPostersGrid = document.querySelector('.saved-posters-grid') 
 var unmotivationalPostersSection = document.querySelector('.unmotivational-posters-section')
-var unmotivationalPostersGrid = document.querySelector('.unmotivational-posters-grid')
+var unmotivationalPostersFlexbox = document.querySelector('.unmotivational-posters-flexbox')
 
 
 //HTML BUTTONS
@@ -292,7 +292,7 @@ saveThisPosterButton.addEventListener('click', savePoster)
 unmotivationalButton.addEventListener('click', showUnmotivationalPostersSection)
 backToMainUnmotivational.addEventListener('click', returnToMainPage)
 unmotivationalButton.addEventListener('click', displayUnmotivationalPosters)
-unmotivationalPostersGrid.addEventListener('dblclick', deletePoster)
+unmotivationalPostersFlexbox.addEventListener('dblclick', deletePoster)
 
 // **FUNCTIONS AND EVENT HANDLERS**
 
@@ -444,9 +444,9 @@ function displayUnmotivationalPosters() {
 
   for (var i = 0 ; i < newArray.length; i++) {
     var poster = newArray[i]
-    unmotivationalPostersGrid.innerHTML += `
+    unmotivationalPostersFlexbox.innerHTML += `
   <div class="mini-poster unmotivational-poster">
-    <img src="${poster.imageURL}" alt="${poster.alt || ''}" class="mini-poster img">
+    <img src="${poster.imageURL}" alt="${poster.alt || ''}" class="img">
     <h2 class=>${poster.title}</h2>
     <h4 class=>${poster.quote}</h4>
   </div>
