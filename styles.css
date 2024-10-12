@@ -109,8 +109,7 @@ button:hover {
   padding: 40px;
 }
 
-.saved-posters-grid,
-.unmotivational-posters-grid {
+.saved-posters-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
@@ -146,6 +145,23 @@ button:hover {
   text-transform: uppercase;
 }
 
+/* ~~~~~ UNMOTIVATIONAL POSTER SECTION ~~~~~ */
+
 .unmotivational-poster {
-  
+  background: gray;
+  color: black;
+  height: 340px;
+  width: 425px;
+  border-radius: 10px;
+}
+
+.unmotivational-poster h2 {
+  color: black;
+}
+
+.unmotivational-posters-flexbox {
+  display: flex;
+  gap: 10px;
+  padding: 20px;
+  flex-wrap: wrap;
 }
