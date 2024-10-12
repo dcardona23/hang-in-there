@@ -292,7 +292,7 @@ saveThisPosterButton.addEventListener('click', savePoster)
 unmotivationalButton.addEventListener('click', showUnmotivationalPostersSection)
 backToMainUnmotivational.addEventListener('click', returnToMainPage)
 unmotivationalButton.addEventListener('click', displayUnmotivationalPosters)
-unmotivationalPostersSection.addEventListener('dblclick', deletePoster)
+unmotivationalPostersGrid.addEventListener('dblclick', deletePoster)
 
 // **FUNCTIONS AND EVENT HANDLERS**
 
@@ -447,17 +447,17 @@ function displayUnmotivationalPosters() {
     unmotivationalPostersGrid.innerHTML += `
   <div class="mini-poster unmotivational-poster">
     <img src="${poster.imageURL}" alt="${poster.alt || ''}" class="mini-poster img">
-    <h2>${poster.title}</h2>
-    <h4>${poster.quote}</h4>
+    <h2 class=>${poster.title}</h2>
+    <h4 class=>${poster.quote}</h4>
+  </div>
   `
   }
 }
 
 function deletePoster() {
-  if (event.target.classList.contains('mini-poster'))
-    event.target.remove()
+  var poster = event.target.closest('.unmotivational-poster')
+  if (poster) {
+    poster.remove()
+  }
   console.log("event:", event)
 }
-
-
-// will need a deletePoster function. Function will trigger upon a double click of the poster - will need to use the dev tools to figure out the target
