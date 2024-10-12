@@ -14,6 +14,8 @@ var mainPosterSection = document.querySelector('#main-poster')
 var savedPostersSection = document.querySelector('#saved-posters')
 var savedPostersGrid = document.querySelector('.saved-posters-grid') 
 var unmotivationalPostersSection = document.querySelector('.unmotivational-posters-section')
+var unmotivationalPostersGrid = document.querySelector('.unmotivational-posters-grid')
+
 
 //HTML BUTTONS
 
@@ -290,6 +292,7 @@ saveThisPosterButton.addEventListener('click', savePoster)
 unmotivationalButton.addEventListener('click', showUnmotivationalPostersSection)
 backToMainUnmotivational.addEventListener('click', returnToMainPage)
 unmotivationalButton.addEventListener('click', displayUnmotivationalPosters)
+unmotivationalPostersSection.addEventListener('dblclick', deletePoster)
 
 // **FUNCTIONS AND EVENT HANDLERS**
 
@@ -358,9 +361,10 @@ function showUnmotivationalPostersSection() {
 function createDisplayAndStoreNewPoster(event) {
   event.preventDefault()
   storeUserInputInArrays()
-  createUserPoster(urlInput.value, titleInput.value, quoteInput.value)
-  returnToMainPage()
+  currentPoster = createPoster(urlInput.value, titleInput.value, quoteInput.value)
+  currentPoster.alt = 'User uploaded image'
   loadPoster(currentPoster)
+  returnToMainPage()
   resetForm()
 }
 
@@ -374,14 +378,6 @@ function storeUserInputInArrays() {
   alts.push(userAlt)
   titles.push(userTitle)
   quotes.push(userQuote)
-}
-
-function createUserPoster(userUrl, userTitle, userQuote) {
-  currentPoster = createPoster({
-    imageURL: userUrl,
-    alt: 'User uploaded image' },
-    userTitle,
-    userQuote)
 }
 
 function resetForm(event) {
@@ -430,21 +426,16 @@ function loadCurrentPosterToSavedPostersPage(savedPosterIndex) {
 
 //UNMOTIVATIONAL POSTERS FUNCTIONS
 
-var unmotivationalPostersGrid = document.querySelector('.unmotivational-posters-grid')
-var unmotivationalPostersSection = document.querySelector('.unmotivational-posters-section')
-
 function cleanData(unmotivationalPosters) {
   var newArray = []
   var newPoster = {}
 
   for (var i = 0; i < unmotivationalPosters.length; i++) {
   var poster = unmotivationalPosters[i]
-  console.log("processing poster:", poster)
+
   newPoster = createPoster(poster.img_url, poster.name, poster.description)
-  console.log("Created poster:", newPoster)
   newArray.push(newPoster)
     }
-    console.log("Final array:", newArray)
   return newArray
 }
 
@@ -454,10 +445,19 @@ function displayUnmotivationalPosters() {
   for (var i = 0 ; i < newArray.length; i++) {
     var poster = newArray[i]
     unmotivationalPostersGrid.innerHTML += `
-  <div class="mini-poster">
+  <div class="mini-poster unmotivational-poster">
     <img src="${poster.imageURL}" alt="${poster.alt || ''}" class="mini-poster img">
     <h2>${poster.title}</h2>
     <h4>${poster.quote}</h4>
   `
   }
 }
+
+function deletePoster() {
+  if (event.target.classList.contains('mini-poster'))
+    event.target.remove()
+  console.log("event:", event)
+}
+
+
+// will need a deletePoster function. Function will trigger upon a double click of the poster - will need to use the dev tools to figure out the target
