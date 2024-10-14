@@ -1,39 +1,5 @@
 // **QUERY SELECTORS**
 
-//POSTER ELEMENTS
-
-var posterImage = document.querySelector('#random-poster-image')
-var posterTitle = document.querySelector('h1')
-var posterQuote = document.querySelector('#random-quote')
-var randomPosterButton = document.querySelector('#random-poster-button')
-
-//HTML SECTIONS
-
-var makeYourOwnPosterSection = document.querySelector('#poster-form')
-var mainPosterSection = document.querySelector('#main-poster')
-var savedPostersSection = document.querySelector('#saved-posters')
-var savedPostersGrid = document.querySelector('.saved-posters-grid') 
-var unmotivationalPostersSection = document.querySelector('.unmotivational-posters-section')
-var unmotivationalPostersFlexbox = document.querySelector('.unmotivational-posters-flexbox')
-
-
-//HTML BUTTONS
-
-var makeYourOwnPosterButton = document.querySelector('#show-form')
-var takeMeBackButton = document.querySelector('#back-to-main-create')
-var savedPostersButton = document.querySelector('#show-saved')
-var backToMain = document.querySelector('#back-to-main-saved')
-var showUserPosterButton = document.querySelector('#show-user-poster-button')
-var saveThisPosterButton = document.querySelector('#save-poster-button') 
-var unmotivationalButton = document.querySelector('#unmotivational-button')
-var backToMainUnmotivational = document.querySelector('#back-to-main-unmotivational')
-
-//INPUTS
-
-var urlInput = document.querySelector('#poster-image-url')
-var titleInput = document.querySelector('#poster-title')
-var quoteInput = document.querySelector('#poster-quote')
-
 //ASSETS
 
 var images = [
@@ -278,9 +244,43 @@ var unmotivationalPosters = [
 var unmotivationalAlts = [ 
   "man standing on road in forest", "two dark polaroids", "rain drops on glass", "looking up at airplane from bottom of dark building", "escape key on keyboard", "hopelessness spelled out with scrabble pieces", "bottom of well", "seashell", "looking up from bottom of well", "man screaming  in crumbling room", "fear", "shadow figure", "electrical tower in fog", "doubt sticker on metal pipe" 
 ]
+
+//POSTER ELEMENTS
+
+var posterImage = document.querySelector('#random-poster-image')
+var posterTitle = document.querySelector('h1')
+var posterQuote = document.querySelector('#random-quote')
+
+//HTML SECTIONS
+
+var makeYourOwnPosterSection = document.querySelector('#poster-form')
+var mainPosterSection = document.querySelector('#main-poster')
+var savedPostersSection = document.querySelector('#saved-posters')
+var savedPostersGrid = document.querySelector('.saved-posters-grid') 
+var unmotivationalPostersSection = document.querySelector('.unmotivational-posters-section')
+var unmotivationalPostersFlexbox = document.querySelector('.unmotivational-posters-flexbox')
+
+//HTML BUTTONS
+
+var makeYourOwnPosterButton = document.querySelector('#show-form')
+var takeMeBackButton = document.querySelector('#back-to-main-create')
+var savedPostersButton = document.querySelector('#show-saved')
+var backToMain = document.querySelector('#back-to-main-saved')
+var showUserPosterButton = document.querySelector('#show-user-poster-button')
+var saveThisPosterButton = document.querySelector('#save-poster-button') 
+var unmotivationalButton = document.querySelector('#unmotivational-button')
+var backToMainUnmotivational = document.querySelector('#back-to-main-unmotivational')
+var randomPosterButton = document.querySelector('#random-poster-button')
+
+//INPUTS
+
+var urlInput = document.querySelector('#poster-image-url')
+var titleInput = document.querySelector('#poster-title')
+var quoteInput = document.querySelector('#poster-quote')
+
+//OTHER 
 var savedPosters = [];
 var currentPoster;
-var alt
 
 // **EVENT LISTENERS**
 
@@ -432,24 +432,20 @@ function loadCurrentPosterToSavedPostersPage(savedPosterIndex) {
 
 function cleanData(unmotivationalPosters) {
   var newArray = []
-  var newPoster = {}
 
-  for (var i = 0; i < unmotivationalPosters.length; i++) {
-  var poster = unmotivationalPosters[i]
-  var posterAlt = unmotivationalAlts[i]
-
-  newPoster = createPoster(poster.img_url, poster.name, poster.description)
-  newPoster.alt = posterAlt 
-  newArray.push(newPoster)
-    }
+  unmotivationalPosters.forEach((poster, index) => {
+    var newPoster = createPoster(poster.img_url, poster.name, poster.description)
+    newPoster.alt = unmotivationalAlts[index]
+    newArray.push(newPoster)
+  })
+  
   return newArray
 }
 
 function displayUnmotivationalPosters() {
   newArray = cleanData(unmotivationalPosters)
 
-  for (var i = 0 ; i < newArray.length; i++) {
-    var poster = newArray[i]
+  newArray.forEach((poster) => {
     unmotivationalPostersFlexbox.innerHTML += `
   <div class="mini-poster unmotivational-poster">
     <img src="${poster.imageURL}" alt="${poster.alt}" class="img">
@@ -457,7 +453,7 @@ function displayUnmotivationalPosters() {
     <h4 class=>${poster.quote}</h4>
   </div>
   `
-  }
+  })
 }
 
 function deletePoster() {
