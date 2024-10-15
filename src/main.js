@@ -242,7 +242,7 @@ var unmotivationalPosters = [
   }
 ];
 var unmotivationalAlts = [ 
-  "man standing on road in forest", "two dark polaroids", "rain drops on glass", "looking up at airplane from bottom of dark building", "escape key on keyboard", "hopelessness spelled out with scrabble pieces", "bottom of well", "seashell", "looking up from bottom of well", "man screaming  in crumbling room", "fear", "shadow figure", "electrical tower in fog", "doubt sticker on metal pipe" 
+  "man standing on road in forest", "two dark polaroids", "rain drops on glass", "looking up at airplane from bottom of dark building", "escape key on keyboard", "hopelessness spelled out with scrabble pieces", "bottom of well", "seashell", "looking up from bottom of well", "man screaming  in crumbling room", "shadow figure", "crumbling pier", "crumbling building", "electrical tower in fog", "doubt sticker on metal pipe"
 ]
 
 //POSTER ELEMENTS
@@ -281,6 +281,7 @@ var quoteInput = document.querySelector('#poster-quote')
 //OTHER 
 var savedPosters = [];
 var currentPoster;
+var deletedPosters = [];
 
 // **EVENT LISTENERS**
 
@@ -436,30 +437,39 @@ function cleanData(unmotivationalPosters) {
   unmotivationalPosters.forEach((poster, index) => {
     var newPoster = createPoster(poster.img_url, poster.name, poster.description)
     newPoster.alt = unmotivationalAlts[index]
+    newPoster.id = index
     newArray.push(newPoster)
   })
-  
   return newArray
 }
 
 function displayUnmotivationalPosters() {
-  newArray = cleanData(unmotivationalPosters)
+  var cleanedData = cleanData(unmotivationalPosters)
 
-  newArray.forEach((poster) => {
+  var nonDeletedPosters = cleanedData.filter((poster) => {
+    return !deletedPosters.includes(poster.id)
+  }) 
+  
+  unmotivationalPostersFlexbox.innerHTML = ''
+
+  nonDeletedPosters.forEach((poster) => {
     unmotivationalPostersFlexbox.innerHTML += `
-  <div class="mini-poster unmotivational-poster">
+  <div class="mini-poster unmotivational-poster" id="poster-${poster.id}">
     <img src="${poster.imageURL}" alt="${poster.alt}" class="img">
-    <h2 class=>${poster.title}</h2>
-    <h4 class=>${poster.quote}</h4>
+    <h2 class=>${poster.name}</h2>
+    <h4 class=>${poster.description}</h4>
   </div>
   `
   })
 }
 
-function deletePoster() {
-  var poster = event.target.closest('.unmotivational-poster')
-  if (poster) {
-    poster.remove()
+function deletePoster(event) {
+  var posterElement = event.target.closest('.unmotivational-poster')
+
+  if (posterElement) {
+    var posterId = parseInt(posterElement.id.replace('poster-', ''), 10)
+
+    posterElement.remove()
+    deletedPosters.push(posterId)
   }
-  console.log("event:", event)
 }
