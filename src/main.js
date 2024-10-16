@@ -449,25 +449,25 @@ function displayUnmotivationalPosters() {
   var nonDeletedPosters = cleanedData.filter((poster) => {
     return !deletedPosters.includes(poster.id)
   }) 
-  
+
   unmotivationalPostersFlexbox.innerHTML = ''
 
   nonDeletedPosters.forEach((poster) => {
     unmotivationalPostersFlexbox.innerHTML += `
-  <div class="mini-poster unmotivational-poster" id="poster-${poster.id}">
+  <div class="mini-poster unmotivational-poster" id="${poster.id}">
     <img src="${poster.imageURL}" alt="${poster.alt}" class="img">
-    <h2 class=>${poster.name}</h2>
-    <h4 class=>${poster.description}</h4>
+    <h2 class=>${poster.title}</h2>
+    <h4 class=>${poster.quote}</h4>
   </div>
   `
   })
-}
+} 
 
 function deletePoster(event) {
   var posterElement = event.target.closest('.unmotivational-poster')
 
   if (posterElement) {
-    var posterId = parseInt(posterElement.id.replace('poster-', ''), 10)
+    var posterId = Number(posterElement.id)
 
     posterElement.remove()
     deletedPosters.push(posterId)

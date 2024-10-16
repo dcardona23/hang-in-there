@@ -38,5 +38,5 @@ Wins:
 2. I developed a deletion feature for removing unwanted "unmotivational" posters, enhancing the app's usability.
 
 Challenges:
-1. Ensuring the deletion feature removed the unwanted "unmotivational" poster from both the DOM and the array of available "unmotivational" posters was challenging. I was ultimately able to accomplish it after seeking assistance from some of my classmates, who directed me to JavaScript's parseInt() functionality. 
+1. Ensuring the deletion feature removed the unwanted "unmotivational" poster from both the DOM and the array of available "unmotivational" posters was challenging. However, I was ultimately successful after identifying JavaScript's built-in Number() function to convert the poster id to a number. 
 2. Managing the array of saved posters and preventing duplicates was tricky, but I was able to get this functionality to work by leveraging built-in JavaScript array methods like incldues(). 
