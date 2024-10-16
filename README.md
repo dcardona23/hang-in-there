@@ -1,15 +1,15 @@
 # Hang in There  
 
 ### Abstract:
-[//]: <> This app is designed to display both random and user-generated motivational posters. Users can generate posters using preloaded images, titles, and quotes, or create their own custom posters by selecting an image an entering their own text. The app also generates and displays "unmotivational" posters, each of which users can delete at will. 
+[//]: <This app is designed to display both random and user-generated motivational posters. Users can generate posters using preloaded images, titles, and quotes, or create their own custom posters by selecting an image an entering their own text. The app also generates and displays "unmotivational" posters, each of which users can delete at will. > 
 
 ### Installation Instructions:
-[//]: <> To clone down and run the app, a person should:
+[//]: <To clone down and run the app, a person should:
 1. Clone the repository from GitHub - https://github.com/dcardona23/hang-in-there
 2. Navigate into the project directory: cd hang-in-there
 3. Install any necesssary dependencies (e.g., npm install or bundle install)
 4. Run the app: open index.html 
-5. Enjoy creating posters!
+5. Enjoy creating posters!> 
 
 ### Preview of App:
 [//]: <> (https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzFjdWxqZHpuYzJ1aTRqc3Q3Z3N5NXJ3amUzNWgwemF3bzFjMzFhYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/lDkwPimNKLY0L2zVyB/giphy.webp)
