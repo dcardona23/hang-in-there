@@ -1,7 +1,7 @@
 # Hang in There  
 
 ### Abstract:
-This app is designed to display both random and user-generated motivational posters. Users can generate posters using preloaded images, titles, and quotes, or create their own custom posters by selecting an image an entering their own text. The app also generates and displays "unmotivational" posters, each of which users can delete at will.
+This app is designed to display both random and user-generated motivational posters. Users can generate posters using preloaded images, titles, and quotes, or create their own custom posters by selecting an image and entering their own text. The app also generates and displays "unmotivational" posters, each of which users can delete at will.
 
 ### Installation Instructions:
 To clone down and run the app, a person should:
@@ -15,10 +15,11 @@ To clone down and run the app, a person should:
 (https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzFjdWxqZHpuYzJ1aTRqc3Q3Z3N5NXJ3amUzNWgwemF3bzFjMzFhYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/lDkwPimNKLY0L2zVyB/giphy.webp)
 
 ### Context:
-This project was developed over the course of a week and a half during the second module of my program at the Turing School of Software Development.It was designed to reinforce our understanding of manipulating the DOM with JavaScript and improving our front-end skills. 
+This project was developed over the course of a week and a half during the second module of my program at the Turing School of Software and Design. It was designed to reinforce our understanding of manipulating the DOM with JavaScript and improve our front-end skills. 
 
 ### Contributors:
-This application was created by: Danielle Cardona. Feel free to connect! https://github.com/dcardona23, https://www.linkedin.com/in/danielle-cardona-se/ 
+This application was created by: Danielle Cardona. 
+Feel free to connect! https://github.com/dcardona23, https://www.linkedin.com/in/danielle-cardona-se/ 
 
 ### Learning Goals:
 The learning goals of this project were to:
@@ -32,10 +33,10 @@ The learning goals of this project were to:
 In developing this application, I used JavaScript, HTML, and CSS, referencing the MDN as needed for correct JavaScript syntax. 
 
 ### Wins + Challenges:
-<> Wins: 
+Wins: 
 1. I successfully implemented random poster generation with dynamic content pulled from multiple arrays
 2. I developed a deletion feature for removing unwanted "unmotivational" posters, enhancing the app's usability.
 
 Challenges:
-1. Ensuring the deletion feature removed the unwanted "unmotivational" poster from both the DOM and the array of available "unmotivational" posters. While this was challenging, I was eventually able to accomplish it after seeking assistance from some of my classmates.
+1. Ensuring the deletion feature removed the unwanted "unmotivational" poster from both the DOM and the array of available "unmotivational" posters was challenging. I was ultimately able to accomplish it after seeking assistance from some of my classmates, who directed me to JavaScript's parseInt() functionality. 
 2. Managing the array of saved posters and preventing duplicates was tricky, but I was able to get this functionality to work by leveraging built-in JavaScript array methods like incldues(). 
