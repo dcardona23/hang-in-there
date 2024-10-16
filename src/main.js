@@ -283,20 +283,40 @@ var savedPosters = [];
 var currentPoster;
 var deletedPosters = [];
 
+// ------------------------------------------------------------------- //
+
 // **EVENT LISTENERS**
 
+//LOADING 
 document.addEventListener('DOMContentLoaded', generateRandomPoster)
-randomPosterButton.addEventListener('click', showAnotherRandomPoster)
-makeYourOwnPosterButton.addEventListener('click', showMakeYourOwnPosterForm)
-takeMeBackButton.addEventListener('click', returnToMainPage)
-savedPostersButton.addEventListener('click', showSavedPostersSection)
-backToMain.addEventListener('click', returnToMainPage)
-showUserPosterButton.addEventListener('click', createDisplayAndStoreNewPoster)
+
+//MAIN PAGE NAVIGATION BUTTONS
 saveThisPosterButton.addEventListener('click', savePoster)
-unmotivationalButton.addEventListener('click', showUnmotivationalPostersSection)
-backToMainUnmotivational.addEventListener('click', returnToMainPage)
+savedPostersButton.addEventListener('click', () => {
+  showAndHideSections(savedPostersSection, mainPosterSection)
+})
+randomPosterButton.addEventListener('click', showAnotherRandomPoster)
+makeYourOwnPosterButton.addEventListener('click', () => {
+  showAndHideSections(makeYourOwnPosterSection, mainPosterSection)
+})
 unmotivationalButton.addEventListener('click', displayUnmotivationalPosters)
+
+//NAVIGATION WITHIN OTHER PAGES
+backToMain.addEventListener('click', () => {
+  showAndHideSections(mainPosterSection, savedPostersSection)
+})
+takeMeBackButton.addEventListener('click', () => {
+  showAndHideSections(mainPosterSection, makeYourOwnPosterSection)
+})
+showUserPosterButton.addEventListener('click', createDisplayAndStoreNewPoster)
+backToMainUnmotivational.addEventListener('click', () => {
+  showAndHideSections(mainPosterSection, unmotivationalPostersSection)
+})
+
+//DELETE POSTERS
 unmotivationalPostersFlexbox.addEventListener('dblclick', deletePoster)
+
+// ------------------------------------------------------------------- //
 
 // **FUNCTIONS AND EVENT HANDLERS**
 
@@ -340,26 +360,9 @@ function showAnotherRandomPoster() {
 }
 
 //FUNCTIONS TO ADD/REMOVE HIDDEN STYLE
-function showMakeYourOwnPosterForm() {
-  mainPosterSection.classList.add('hidden')
-  makeYourOwnPosterSection.classList.remove('hidden')
-}
-
-function returnToMainPage() {
-  makeYourOwnPosterSection.classList.add('hidden')
-  savedPostersSection.classList.add('hidden')
-  mainPosterSection.classList.remove('hidden')
-  unmotivationalPostersSection.classList.add('hidden')
-}
-
-function showSavedPostersSection() {
-  savedPostersSection.classList.remove('hidden')
-  mainPosterSection.classList.add('hidden')
-}
-
-function showUnmotivationalPostersSection() {
-  mainPosterSection.classList.add('hidden')
-  unmotivationalPostersSection.classList.remove('hidden')
+function showAndHideSections(section1, section2) {
+  section1.classList.remove('hidden') 
+  section2.classList.add('hidden')
 }
 
 //FUNCTIONS TO CREATE NEW POSTERS
@@ -369,7 +372,7 @@ function createDisplayAndStoreNewPoster(event) {
   currentPoster = createPoster(urlInput.value, titleInput.value, quoteInput.value)
   currentPoster.alt = 'User uploaded image'
   loadPoster(currentPoster)
-  returnToMainPage()
+  showAndHideSections(mainPosterSection, makeYourOwnPosterSection)
   resetForm()
 }
 
@@ -395,7 +398,7 @@ function resetForm(event) {
 
 function savePoster() {
   addCurrentPosterToSavedPostersArray()
-  showSavedPostersSection()
+  showAndHideSections(savedPostersSection, mainPosterSection)
 }
 
 function addCurrentPosterToSavedPostersArray() {
@@ -460,6 +463,8 @@ function displayUnmotivationalPosters() {
     <h4 class=>${poster.quote}</h4>
   </div>
   `
+
+  showAndHideSections(unmotivationalPostersSection, mainPosterSection)
   })
 } 
 
