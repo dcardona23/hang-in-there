@@ -281,7 +281,6 @@ var quoteInput = document.querySelector('#poster-quote')
 //OTHER 
 var savedPosters = [];
 var currentPoster;
-var deletedPosters = [];
 
 // ------------------------------------------------------------------- //
 
@@ -448,14 +447,9 @@ function cleanData(unmotivationalPosters) {
 
 function displayUnmotivationalPosters() {
   var cleanedData = cleanData(unmotivationalPosters)
-
-  var nonDeletedPosters = cleanedData.filter((poster) => {
-    return !deletedPosters.includes(poster.id)
-  }) 
-
   unmotivationalPostersFlexbox.innerHTML = ''
 
-  nonDeletedPosters.forEach((poster) => {
+  cleanedData.forEach((poster) => {
     unmotivationalPostersFlexbox.innerHTML += `
   <div class="mini-poster unmotivational-poster" id="${poster.id}">
     <img src="${poster.imageURL}" alt="${poster.alt}" class="img">
@@ -475,6 +469,6 @@ function deletePoster(event) {
     var posterId = Number(posterElement.id)
 
     posterElement.remove()
-    deletedPosters.push(posterId)
+    unmotivationalPosters.splice(posterId, 1)
   }
 }
