@@ -11,8 +11,8 @@ To clone down and run the app, a person should:
 4. Run the app: open index.html 
 5. Enjoy creating posters!
 
-### Preview of App:
-(https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzFjdWxqZHpuYzJ1aTRqc3Q3Z3N5NXJ3amUzNWgwemF3bzFjMzFhYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/lDkwPimNKLY0L2zVyB/giphy.webp)
+
+![### Preview of App](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzFjdWxqZHpuYzJ1aTRqc3Q3Z3N5NXJ3amUzNWgwemF3bzFjMzFhYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/lDkwPimNKLY0L2zVyB/giphy.webp)
 
 ### Context:
 This project was developed over the course of a week and a half during the second module of my program at the Turing School of Software and Design. It was designed to reinforce our understanding of manipulating the DOM with JavaScript and improve our front-end skills. 
