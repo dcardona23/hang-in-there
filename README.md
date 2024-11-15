@@ -20,8 +20,8 @@ This project was developed over the course of a week and a half during the secon
 ### Contributors:
 This application was created by: Danielle Cardona
 
-![GitHub](https://github.com/dcardona23) 
-![LinkedIn](https://www.linkedin.com/in/danielle-cardona-se/)
+[GitHub](https://github.com/dcardona23) 
+[LinkedIn](https://www.linkedin.com/in/danielle-cardona-se/)
 
 ### Learning Goals:
 The learning goals of this project were to:
