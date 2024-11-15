@@ -12,14 +12,16 @@ To clone down and run the app, a person should:
 5. Enjoy creating posters!
 
 
-![### Preview of App](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzFjdWxqZHpuYzJ1aTRqc3Q3Z3N5NXJ3amUzNWgwemF3bzFjMzFhYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/lDkwPimNKLY0L2zVyB/giphy.webp)
+![Preview](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzFjdWxqZHpuYzJ1aTRqc3Q3Z3N5NXJ3amUzNWgwemF3bzFjMzFhYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/lDkwPimNKLY0L2zVyB/giphy.webp)
 
 ### Context:
 This project was developed over the course of a week and a half during the second module of my program at the Turing School of Software and Design. It was designed to reinforce our understanding of manipulating the DOM with JavaScript and improve our front-end skills. 
 
 ### Contributors:
-This application was created by: Danielle Cardona. 
-Feel free to connect! https://github.com/dcardona23, https://www.linkedin.com/in/danielle-cardona-se/ 
+This application was created by: Danielle Cardona
+
+![GitHub](https://github.com/dcardona23) 
+![LinkedIn](https://www.linkedin.com/in/danielle-cardona-se/)
 
 ### Learning Goals:
 The learning goals of this project were to:
